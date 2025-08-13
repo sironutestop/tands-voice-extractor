@@ -28,11 +28,17 @@ def main(directory: str, filename: str, output: str, debug: bool) -> None:
         setup_logging()
 
     voice_files_list = glob.glob(f"{directory}/{filename}")
+    file_count = len(voice_files_list)
+    print(f"{file_count} 個のファイルの処理を行います")
     model = whisper.load_model("medium")
+
+    # 進捗率を表示するためのカウンタ変数
+    count = 1
 
     # 存在するファイル分、文字起こしを行いファイルに出力する
     with open(output, "a", encoding="utf-8") as result_file:
         for voice_file in voice_files_list:
+            print(f"{file_count} 個中、 {count} 個目を処理中\n進捗率 {count/file_count}")
 
             if debug:
                 start_time = time.time()
