@@ -34,23 +34,17 @@ def main(directory: str, filename: str, output: str, debug: bool) -> None:
     with open(output, "a", encoding="utf-8") as result_file:
         for voice_file in voice_files_list:
 
-            # テスト用　（後で消す）
-            print(f"{voice_file} の処理を開始")
-
             if debug:
-                logging.debug(f"{voice_file} の処理を開始")
                 start_time = time.time()
+                logging.debug(f"{voice_file} の処理を開始({start_time})")
 
-            result = model.transcribe(voice_file, fp16=False)  # 音声データの文字起こし
-
-            # テスト用　（後で消す）
-            print(f"{voice_file} の処理を終了")
+            result = model.transcribe(voice_file, fp16=False)
 
             result_file.write(f"[{voice_file}]\n\t{result['text']}\n\n")
 
             if debug:
                 end_time = time.time()
-                logging.debug(f"{voice_file} の処理を完了。\n実行時間:{end_time - start_time}")
+                logging.debug(f"{voice_file} の処理を完了({end_time})\n実行時間:{end_time - start_time}")
 
 
 if __name__ == "__main__":
