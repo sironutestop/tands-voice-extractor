@@ -1,6 +1,12 @@
 # テスト用のファイル
 sample.py
 
+# 結果ファイル（デフォルト名）
+results.txt
+
+# line keep の音声ファイルが入っているディレクトリ
+line_keep_voice_and_music
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
